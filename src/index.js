@@ -55,6 +55,8 @@ module.exports = function(createStore) {
             Object.keys(props).forEach(function(p) { if (!~skipMerge.indexOf(p)) mergedProps[p] = props[p]; });
             Object.keys(initialProps || {}).forEach(function(p) { mergedProps[p] = initialProps[p]; });
 
+            mergedProps.store = mergedProps.store || store;
+            
             return React.createElement( //FIXME This will create double Provider for _document case
                 Provider,
                 {store: store},
